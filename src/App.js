@@ -404,17 +404,59 @@ const decrement = useCallback(() => setCount(count - 1), [count])`}
 const decrement = useCallback(() => setCount(count => count - 1), [])`}
     </CodePane>
   </Slide>
+
+  <Slide>
+    <Heading>useRef</Heading>
+    <Text>ye olde write only variable</Text>
+
+    <Stepper values={[[4, 4], [10, 10], [7, 7]]}>
+      {value => {
+        const [start, end] = value || []
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+          {`import { useRef, useEffect } from 'react'
+
+const ReportedImage = ({ src }) => {
+  const clickCount = useRef(0)
+
+  useEffect(() => {
+    return () => reportToAnalytics({ src, clicks: clickCount.current })
+  }, [src])
+
+  return <img src={src} onClick={() => clickCount.current += 1} />
+}`}
+        </CodePane>
+      }}
+    </Stepper>
+  </Slide>
+
+  <Slide>
+    <Heading>useRef</Heading>
+    <Text>DOM bakstīšana</Text>
+
+    <Stepper values={[[4, 4], [10, 10], [7, 7]]}>
+      {value => {
+        const [start, end] = value || []
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+          {`import { useRef, useLayoutEffect } from 'react'
+
+const FocusedInput = (props) => {
+  const inputElement = useRef()
+
+  useLayoutEffect(() => {
+    inputElement.current.focus()
+  })
+
+  return <input ref={ref} {...props} />
+}`}
+        </CodePane>
+      }}
+    </Stepper>
+  </Slide>
 </Deck>
 
 export default App
 
 /*
-
-# builtIn hooks
-
----
-* useRef
----
 
 * useReducer
 
