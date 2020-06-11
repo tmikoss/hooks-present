@@ -250,6 +250,59 @@ const MeasuredComponent = ({ children }) => {
       <Text>...ne reizi neesmu lietojis 🤷‍♂️</Text>
     </Appear>
   </Slide>
+
+  <Slide>
+    <Heading>useContext</Heading>
+    <Text>mani dati ir tur augšā</Text>
+
+    <Stepper values={[[3, 3], [5, 11], [6, 6], [13, 17], [14, 14]]}>
+      {value => {
+        const [start, end] = value || []
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+          {`import { useContext, createContext } from 'react'
+
+const CurrentUser = createContext(undefined)
+
+const ParentComponent = () => {
+  return <CurrentUser.Provider value={{ name: 'tmikoss' }}>
+    <OtherComponent>
+      <ChildComponent />
+    </OtherComponent>
+  </CurrentUser.Provider>
+}
+
+const ChildComponent = () => {
+  const currentUser = useContext(CurrentUser)
+
+  return <div>my name is {currentUser.name}</div>
+}`}
+        </CodePane>
+      }}
+    </Stepper>
+  </Slide>
+
+  <Slide>
+    <Heading>useContext</Heading>
+    <Text>izmanto tuvāko Provider</Text>
+
+    <CodePane autoFillHeight={true}>
+      {`import { useContext, createContext } from 'react'
+
+const Theme = createContext('default')
+
+const ParentComponent = () => {
+  return <Theme.Provider value='dark'>
+    <Theme.Provider value='light'>
+      <ChildComponent />
+    </Theme.Provider>
+  </Theme.Provider>
+}
+
+const ChildComponent = () => {
+  const theme = useContext(Theme) // 'light'
+}`}
+    </CodePane>
+  </Slide>
 </Deck>
 
 export default App
@@ -258,9 +311,6 @@ export default App
 
 # builtIn hooks
 
----
-
-* useContext
 
 * useCallback
   * definīcija
