@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Deck, Slide, Heading, FlexBox, CodePane, Text, Stepper, UnorderedList, ListItem } from 'spectacle'
+import { Deck, Slide, Heading, FlexBox, CodePane, Text, Stepper, UnorderedList, ListItem, Appear } from 'spectacle'
 
 const STRIKE = { textDecoration: 'line-through' }
 
@@ -154,6 +154,46 @@ const FancyImage = ({ src }) => {
   <Slide>
     <Heading>useState</Heading>
     <Text>ye olde variable</Text>
+
+    <Stepper values={[[4, 7], [5, 5], [6,6], [7,7], [13,13], [11,11]]}>
+      {value => {
+        const [start, end] = value || []
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+          {`import { useState } from 'react'
+
+const FancyImage = ({ src }) => {
+  const [
+    zoomed,
+    setZoomed
+  ] = useState(false)
+
+  return <div
+    className='image-container'
+    onClick=(() => setZoomed(!zoomed))
+  >
+    <img src={zoomed ? \`/2x\${src}\` : src} />
+  </div>
+}`}
+        </CodePane>
+      }}
+    </Stepper>
+  </Slide>
+
+  <Slide>
+    <Heading>useState</Heading>
+    <Text>balstoties uz iepriekšējo vērtību</Text>
+
+    <CodePane>
+{`const [_, setCount] = useState(0)
+const increment = () => setCount(countWas => countWas + 1)
+const decrement = () => setCount(countWas => countWas - 1)`}
+    </CodePane>
+
+    <Text>"smaga" defaultā vērtība</Text>
+
+    <CodePane>
+      {`const [count, setCount] = useState(() => calculateNthPrime(100))`}
+    </CodePane>
   </Slide>
 </Deck>
 
