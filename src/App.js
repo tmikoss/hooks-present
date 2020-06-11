@@ -225,6 +225,31 @@ const Pokemon = ({ name }) => {
   </Slide>
 
   <Slide>
+    <Heading>useEffect</Heading>
+    <Text>componentWillUnmount</Text>
+
+    <Stepper values={[[6, 9], [8, 8]]}>
+      {value => {
+        const [start, end] = value || []
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+          {`import { useEffect } from 'react'
+
+const Pokemon = ({ name }) => {
+  const [data, setData] = useState(undefined)
+
+  useEffect(() => {
+    const unsubscribe = subscribeToPokemon(name, data => setData(data))
+    return unsubscribe
+  },[name])
+
+  return <pre>{JSON.stringify(data, undefined, 2)}</pre>
+}`}
+        </CodePane>
+      }}
+    </Stepper>
+  </Slide>
+
+  <Slide>
     <Heading>useLayoutEffect</Heading>
     <Text>useEffect, bet pēc DOM izmaiņām</Text>
 
