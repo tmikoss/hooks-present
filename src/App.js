@@ -560,10 +560,32 @@ const Page = () => {
 }`}
     </CodePane>
   </Slide>
+
+  <Slide>
+    <Heading>react-intersection-observer</Heading>
+    <CodePane autoFillHeight={true}>
+      {`import { useInView } from 'react-intersection-observer'
+
+const Order = ({ id, number }) => {
+  const [ref, inView] = useInView()
+  const [orderItems, setOrderItems] = useState([])
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    fetch(\`/api/order/\${id}\`).then(data => {
+      setOrderItems(data)
+      setLoaded(true)
+    })
+  }, [inView, loaded])
+
+  return <div ref={ref}>
+    Order {number}:
+    <ul>{orderItems.map(oi => <li key={oi}>{oi}</li>)}</ul>
+  </div>
+}`}
+    </CodePane>
+  </Slide>
 </Deck>
-
-
-
 
 
 
@@ -571,8 +593,6 @@ export default App
 
 /*
 
-  * router
----
 * custom hook combinations
 ---
 * functional component best practices
