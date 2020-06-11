@@ -541,6 +541,25 @@ const ProductPrice = ({ id }) => {
 }`}
     </CodePane>
   </Slide>
+
+  <Slide>
+    <Heading>react-router-dom</Heading>
+    <CodePane autoFillHeight={true}>
+      {`import { useParams, useHistory, useRouteMatch } from 'react-router-dom'
+
+const Page = () => {
+  const { id } = useParams()
+  const history = useHistory()
+  const match = useRouteMatch('/page/1337')
+
+  return <div>
+    id from URL: {id}
+    <button onClick={() => history.push('/')}>go home</button>
+    {match && "you are the 100,000th visitor today!!!!"}
+  </div>
+}`}
+    </CodePane>
+  </Slide>
 </Deck>
 
 
