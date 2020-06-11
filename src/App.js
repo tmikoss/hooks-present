@@ -585,6 +585,31 @@ const Order = ({ id, number }) => {
 }`}
     </CodePane>
   </Slide>
+
+  <Slide>
+    <Heading>hook^hook </Heading>
+    <CodePane autoFillHeight={true}>
+      {`import { useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+
+const usePageView = () => {
+  const location = useLoacation()
+  useEffect(() => sendToAnalytics(location), [location])
+}
+
+const PageA = () => {
+  usePageView()
+
+  return <div>A</div>
+}
+
+const PageB = () => {
+  usePageView()
+
+  return <div>B</div>
+}`}
+    </CodePane>
+  </Slide>
 </Deck>
 
 
@@ -593,7 +618,6 @@ export default App
 
 /*
 
-* custom hook combinations
 ---
 * functional component best practices
 
