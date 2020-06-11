@@ -490,6 +490,31 @@ const Counter = () => {
       }}
     </Stepper>
   </Slide>
+
+  <Slide>
+    <Hero>yarn install hook</Hero>
+  </Slide>
+
+  <Slide>
+    <Heading>react-redux</Heading>
+    <Text>aizvieto `connect` HOC</Text>
+
+    <CodePane autoFillHeight={true}>
+      {`import { useSelector, useDispatch } from 'react-redux'
+
+const Counter = () => {
+  const count = useSelector(state => state.count)
+  const dispatch = useDispatch()
+
+  return <>
+    {count}
+    <button onClick={() => dispatch({type: 'increment'})}>+</button>
+    <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+  </>
+}`}
+    </CodePane>
+  </Slide>
+
 </Deck>
 
 export default App
@@ -498,10 +523,6 @@ export default App
 
 * lib piemēri
 
----
-
-  * redux
----
   * apollo
 ---
   * router
