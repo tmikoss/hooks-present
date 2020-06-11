@@ -331,6 +331,54 @@ const Total = ({ orderItems }) => {
       <Text>useState + useEffect</Text>
     </Appear>
   </Slide>
+
+  <Slide>
+    <Heading>useCallback</Heading>
+    <Text>mana aplikācija bremzē, jo in-line funkcijas</Text>
+
+    <Stepper values={[[6, 9], [7, 7], [8, 8],[14,16]]}>
+      {value => {
+        const [start, end] = value || []
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+          {`import { useCallback, useState } from 'react'
+
+const ControlledInput = () => {
+  const [count, setCount] = useState(0)
+
+  const increment = useCallback(
+    () => setCount(count + 1),
+    [count]
+  )
+
+  const decrement = useCallback(() => setCount(count - 1),[count])
+
+  return <>
+    {count}
+    <button onClick={increment}>+</button>
+    <button onClick={decrement}>-</button>
+  </>
+}`}
+        </CodePane>
+      }}
+    </Stepper>
+  </Slide>
+
+  <Slide>
+    <Heading>useCallback</Heading>
+    <Text>kopā ar useState</Text>
+
+    <CodePane>
+      {`const [count, setCount] = useState(0)
+const decrement = useCallback(() => setCount(count - 1), [count])`}
+    </CodePane>
+
+    <Text>less dependencies more better</Text>
+
+    <CodePane>
+      {`const [_, setCount] = useState(0)
+const decrement = useCallback(() => setCount(count => count - 1), [])`}
+    </CodePane>
+  </Slide>
 </Deck>
 
 export default App
@@ -339,9 +387,6 @@ export default App
 
 # builtIn hooks
 
-
-* useCallback
-  * definīcija
 ---
 * useRef
 ---
