@@ -148,6 +148,10 @@ const FancyImage = ({ src }) => {
   </Slide>
 
   <Slide>
+    <Hero>mazākas izmaiņas, mazāka vēlme visu likt vienā komponentā</Hero>
+  </Slide>
+
+  <Slide>
     <Hero>{"import { hook } from 'react'"}</Hero>
   </Slide>
 
@@ -610,20 +614,13 @@ const PageB = () => {
 }`}
     </CodePane>
   </Slide>
+
+  <Slide>
+    <FlexBox alignItems='center' height='100%' flexDirection='column'>
+      <Heading>more hooks more hooks</Heading>
+      <Text>https://github.com/rehooks/awesome-react-hooks</Text>
+    </FlexBox>
+  </Slide>
 </Deck>
 
-
-
 export default App
-
-/*
-
----
-* functional component best practices
-
----
-
-* React.memo
-
-
-*/
