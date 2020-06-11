@@ -452,15 +452,49 @@ const FocusedInput = (props) => {
       }}
     </Stepper>
   </Slide>
+
+  <Slide>
+    <Heading>useReducer</Heading>
+    <Text>mans primais redux</Text>
+
+    <Stepper values={[[3, 12], [15, 18], [16, 16], [17, 17], [22, 23]]}>
+      {value => {
+        const [start, end] = value || []
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+          {`import { useReducer } from 'react'
+
+const reducer(state, action) => {
+  switch (action.type) {
+    case 'increment':
+      return {count: state.count + 1}
+    case 'decrement':
+      return {count: state.count - 1}
+    default:
+      return state
+  }
+}
+
+const Counter = () => {
+  const [{ count }, dispatch] = useReducer(
+    reducer,
+    { count: 0 }
+  )
+
+  return <>
+    {count}
+    <button onClick={() => dispatch({type: 'increment'})}>+</button>
+    <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+  </>
+}`}
+        </CodePane>
+      }}
+    </Stepper>
+  </Slide>
 </Deck>
 
 export default App
 
 /*
-
-* useReducer
-
----
 
 * lib piemēri
 
