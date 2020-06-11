@@ -515,16 +515,43 @@ const Counter = () => {
     </CodePane>
   </Slide>
 
+  <Slide>
+    <Heading>@apollo/client</Heading>
+    <CodePane autoFillHeight={true}>
+      {`import { useQuery, gql } from '@apollo/client'
+
+const GET_PRICE = gql\`
+  query($productId: Int!) {
+    productPrice(id: $productId) {
+      base, discount, tax
+    }
+  }
+\`
+
+const ProductPrice = ({ id }) => {
+  const { loading, data } = useQuery(GET_PRICE, { variables: { productId: id } })
+
+  if (loading) {
+    return <div>loading...</div>
+  }
+
+  const { base, discount, tax } = data
+
+  return <div>price: {base - discount}€, tax: {tax}</div>
+}`}
+    </CodePane>
+  </Slide>
 </Deck>
+
+
+
+
+
 
 export default App
 
 /*
 
-* lib piemēri
-
-  * apollo
----
   * router
 ---
 * custom hook combinations
