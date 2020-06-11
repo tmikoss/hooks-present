@@ -195,6 +195,61 @@ const decrement = () => setCount(countWas => countWas - 1)`}
       {`const [count, setCount] = useState(() => calculateNthPrime(100))`}
     </CodePane>
   </Slide>
+
+  <Slide>
+    <Heading>useEffect</Heading>
+    <Text>componentDidMount / componentDidUpdate</Text>
+
+    <Stepper values={[[6, 12], [7, 11], [12, 12]]}>
+      {value => {
+        const [start, end] = value || []
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+          {`import { useEffect } from 'react'
+
+const Pokemon = ({ name }) => {
+  const [data, setData] = useState(undefined)
+
+  useEffect(() => {
+    fetch(\`https://pokeapi.co/api/v2/pokemon/\${name}\`).then(
+      res => res.json()
+    ).then(
+      data => setData(data)
+    )
+  },[name])
+
+  return <pre>{JSON.stringify(data, undefined, 2)}</pre>
+}`}
+        </CodePane>
+      }}
+    </Stepper>
+  </Slide>
+
+  <Slide>
+    <Heading>useLayoutEffect</Heading>
+    <Text>useEffect, bet pēc DOM izmaiņām</Text>
+
+    <Stepper values={[[4,7]]}>
+      {value => {
+        const [start, end] = value || []
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+          {`import { useLayoutEffect } from 'react'
+
+const MeasuredComponent = ({ children }) => {
+  useLayoutEffect(() => {
+    const height = document.querySelector('#container').offsetHeight
+    console.log('container height', height)
+  },[])
+
+  return <div id='container'>{children}</div>
+}`}
+        </CodePane>
+      }}
+    </Stepper>
+
+    <Appear elementNum={1}>
+      <Text>...ne reizi neesmu lietojis 🤷‍♂️</Text>
+    </Appear>
+  </Slide>
 </Deck>
 
 export default App
@@ -205,16 +260,8 @@ export default App
 
 ---
 
-* useState
-
----
-
 * useContext
 
----
-* useEffect
-  * useLayoutEffect
----
 * useCallback
   * definīcija
 ---
