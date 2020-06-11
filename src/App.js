@@ -303,6 +303,34 @@ const ChildComponent = () => {
 }`}
     </CodePane>
   </Slide>
+
+  <Slide>
+    <Heading>useMemo</Heading>
+    <Text>mana aplikācija bremzē, jo daudz aprēķinu</Text>
+
+    <Stepper values={[[3, 8], [5, 7], [8, 8]]}>
+      {value => {
+        const [start, end] = value || []
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+          {`import { useMemo } from 'react'
+
+const Total = ({ orderItems }) => {
+  const total = useMemo(() => {
+    return orderItems.reduce((total, item) => {
+      return total + (item.price - item.discount) * item.quantity
+    }, 0)
+  }, [orderItems])
+
+  return <div>total {total}€</div>
+}`}
+        </CodePane>
+      }}
+    </Stepper>
+
+    <Appear elementNum={3}>
+      <Text>useState + useEffect</Text>
+    </Appear>
+  </Slide>
 </Deck>
 
 export default App
@@ -316,12 +344,6 @@ export default App
   * definīcija
 ---
 * useRef
----
-
-* useMemo
-  * iepriekšējās vērtības tiek cached?
-  * komponenti
-
 ---
 
 * useReducer
