@@ -194,7 +194,7 @@ const increment = () => setCount(countWas => countWas + 1)
 const decrement = () => setCount(countWas => countWas - 1)`}
     </CodePane>
 
-    <Text>"smaga" defaultā vērtība</Text>
+    <Text>"smaga" defaultā vērtība (ne tikai useState)</Text>
 
     <CodePane indentSize={INDENT}>
       {`const [count, setCount] = useState(() => calculateNthPrime(100))`}
@@ -395,12 +395,6 @@ const ControlledInput = () => {
 
   <Slide>
     <Heading>useCallback</Heading>
-    <Text>kopā ar useState</Text>
-
-    <CodePane indentSize={INDENT}>
-      {`const [count, setCount] = useState(0)
-const decrement = useCallback(() => setCount(count - 1), [count])`}
-    </CodePane>
 
     <Text>less dependencies more better</Text>
 
@@ -639,6 +633,18 @@ const PageB = () => {
   return { loading, error, data }
 }`}
     </CodePane>
+  </Slide>
+
+  <Slide>
+    <FlexBox alignItems='center' height='100%' flexDirection='column'>
+      <Heading>TL;DR</Heading>
+      <UnorderedList>
+        <ListItem>mazi komponenti ir forši</ListItem>
+        <ListItem>sāc ar DOM, pievieno hooks loģikai</ListItem>
+        <ListItem>useMemo / useCallback performancei</ListItem>
+        <ListItem>loģikas re-use ar custom hookiem</ListItem>
+      </UnorderedList>
+    </FlexBox>
   </Slide>
 
   <Slide>
