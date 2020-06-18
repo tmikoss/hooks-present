@@ -2,6 +2,7 @@ import React from 'react'
 import { Deck, Slide, Heading, FlexBox, CodePane, Text, Stepper, UnorderedList, ListItem, Appear } from 'spectacle'
 
 const STRIKE = { textDecoration: 'line-through' }
+const INDENT = 4
 
 const Hero = ({ children, ...other }) => <FlexBox alignItems='center' height='100%'>
   <Heading {...other}>{children}</Heading>
@@ -28,7 +29,7 @@ const App = () => <Deck>
     <Stepper values={[[21, 28]]}>
       {value => {
         const [start, end] = value || [1, 19]
-        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true} indentSize={INDENT}>
           {`class Test extends React.Component {
   constructor(props) {
     super(props)
@@ -92,7 +93,7 @@ const Test = () => {
     <Stepper values={[[7, 24]]}>
       {value => {
         const [start, end] = value || [1, 5]
-        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true} indentSize={INDENT}>
 {`const FancyImage = ({ src }) => {
   return <div className='image-container'>
     <img src={src} alt='Image' />
@@ -128,7 +129,7 @@ class FancyImage extends React.Component {
     <Stepper values={[[7, 13], [8,8]]}>
       {value => {
         const [start, end] = value || [1, 5]
-        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true} indentSize={INDENT}>
           {`const FancyImage = ({ src }) => {
   return <div className='image-container'>
     <img src={src} alt='Image' />
@@ -162,7 +163,7 @@ const FancyImage = ({ src }) => {
     <Stepper values={[[4, 7], [5, 5], [6,6], [7,7], [13,13], [11,11]]}>
       {value => {
         const [start, end] = value || []
-        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true} indentSize={INDENT}>
           {`import { useState } from 'react'
 
 const FancyImage = ({ src }) => {
@@ -187,7 +188,7 @@ const FancyImage = ({ src }) => {
     <Heading>useState</Heading>
     <Text>balstoties uz iepriekšējo vērtību</Text>
 
-    <CodePane>
+    <CodePane indentSize={INDENT}>
 {`const [_, setCount] = useState(0)
 const increment = () => setCount(countWas => countWas + 1)
 const decrement = () => setCount(countWas => countWas - 1)`}
@@ -195,7 +196,7 @@ const decrement = () => setCount(countWas => countWas - 1)`}
 
     <Text>"smaga" defaultā vērtība</Text>
 
-    <CodePane>
+    <CodePane indentSize={INDENT}>
       {`const [count, setCount] = useState(() => calculateNthPrime(100))`}
     </CodePane>
   </Slide>
@@ -207,7 +208,7 @@ const decrement = () => setCount(countWas => countWas - 1)`}
     <Stepper values={[[6, 12], [7, 11], [12, 12]]}>
       {value => {
         const [start, end] = value || []
-        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true} indentSize={INDENT}>
           {`import { useEffect } from 'react'
 
 const Pokemon = ({ name }) => {
@@ -235,7 +236,7 @@ const Pokemon = ({ name }) => {
     <Stepper values={[[6, 9], [8, 8]]}>
       {value => {
         const [start, end] = value || []
-        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true} indentSize={INDENT}>
           {`import { useEffect } from 'react'
 
 const Pokemon = ({ name }) => {
@@ -260,7 +261,7 @@ const Pokemon = ({ name }) => {
     <Stepper values={[[4,7]]}>
       {value => {
         const [start, end] = value || []
-        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true} indentSize={INDENT}>
           {`import { useLayoutEffect } from 'react'
 
 const MeasuredComponent = ({ children }) => {
@@ -287,7 +288,7 @@ const MeasuredComponent = ({ children }) => {
     <Stepper values={[[3, 3], [5, 11], [6, 6], [13, 17], [14, 14]]}>
       {value => {
         const [start, end] = value || []
-        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true} indentSize={INDENT}>
           {`import { useContext, createContext } from 'react'
 
 const CurrentUser = createContext(undefined)
@@ -314,7 +315,7 @@ const ChildComponent = () => {
     <Heading>useContext</Heading>
     <Text>izmanto tuvāko Provider</Text>
 
-    <CodePane autoFillHeight={true}>
+    <CodePane autoFillHeight={true} indentSize={INDENT}>
       {`import { useContext, createContext } from 'react'
 
 const Theme = createContext('default')
@@ -340,7 +341,7 @@ const ChildComponent = () => {
     <Stepper values={[[3, 8], [5, 7], [8, 8]]}>
       {value => {
         const [start, end] = value || []
-        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true} indentSize={INDENT}>
           {`import { useMemo } from 'react'
 
 const Total = ({ orderItems }) => {
@@ -368,7 +369,7 @@ const Total = ({ orderItems }) => {
     <Stepper values={[[6, 9], [7, 7], [8, 8],[14,16]]}>
       {value => {
         const [start, end] = value || []
-        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true} indentSize={INDENT}>
           {`import { useCallback, useState } from 'react'
 
 const ControlledInput = () => {
@@ -396,14 +397,14 @@ const ControlledInput = () => {
     <Heading>useCallback</Heading>
     <Text>kopā ar useState</Text>
 
-    <CodePane>
+    <CodePane indentSize={INDENT}>
       {`const [count, setCount] = useState(0)
 const decrement = useCallback(() => setCount(count - 1), [count])`}
     </CodePane>
 
     <Text>less dependencies more better</Text>
 
-    <CodePane>
+    <CodePane indentSize={INDENT}>
       {`const [_, setCount] = useState(0)
 const decrement = useCallback(() => setCount(count => count - 1), [])`}
     </CodePane>
@@ -416,7 +417,7 @@ const decrement = useCallback(() => setCount(count => count - 1), [])`}
     <Stepper values={[[4, 4], [10, 10], [7, 7]]}>
       {value => {
         const [start, end] = value || []
-        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true} indentSize={INDENT}>
           {`import { useRef, useEffect } from 'react'
 
 const ReportedImage = ({ src }) => {
@@ -440,7 +441,7 @@ const ReportedImage = ({ src }) => {
     <Stepper values={[[4, 4], [10, 10], [7, 7]]}>
       {value => {
         const [start, end] = value || []
-        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true} indentSize={INDENT}>
           {`import { useRef, useLayoutEffect } from 'react'
 
 const FocusedInput = (props) => {
@@ -464,7 +465,7 @@ const FocusedInput = (props) => {
     <Stepper values={[[3, 12], [15, 18], [16, 16], [17, 17], [22, 23]]}>
       {value => {
         const [start, end] = value || []
-        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true}>
+        return <CodePane highlightStart={start} highlightEnd={end} autoFillHeight={true} indentSize={INDENT}>
           {`import { useReducer } from 'react'
 
 const reducer(state, action) => {
@@ -503,7 +504,7 @@ const Counter = () => {
     <Heading>react-redux</Heading>
     <Text>aizvieto `connect` HOC</Text>
 
-    <CodePane autoFillHeight={true}>
+    <CodePane autoFillHeight={true} indentSize={INDENT}>
       {`import { useSelector, useDispatch } from 'react-redux'
 
 const Counter = () => {
@@ -521,7 +522,7 @@ const Counter = () => {
 
   <Slide>
     <Heading>@apollo/client</Heading>
-    <CodePane autoFillHeight={true}>
+    <CodePane autoFillHeight={true} indentSize={INDENT}>
       {`import { useQuery, gql } from '@apollo/client'
 
 const GET_PRICE = gql\`
@@ -548,7 +549,7 @@ const ProductPrice = ({ id }) => {
 
   <Slide>
     <Heading>react-router-dom</Heading>
-    <CodePane autoFillHeight={true}>
+    <CodePane autoFillHeight={true} indentSize={INDENT}>
       {`import { useParams, useHistory, useRouteMatch } from 'react-router-dom'
 
 const Page = () => {
@@ -567,7 +568,7 @@ const Page = () => {
 
   <Slide>
     <Heading>react-intersection-observer</Heading>
-    <CodePane autoFillHeight={true}>
+    <CodePane autoFillHeight={true} indentSize={INDENT}>
       {`import { useInView } from 'react-intersection-observer'
 
 const Order = ({ id, number }) => {
@@ -592,7 +593,7 @@ const Order = ({ id, number }) => {
 
   <Slide>
     <Heading>hook^hook </Heading>
-    <CodePane autoFillHeight={true}>
+    <CodePane autoFillHeight={true} indentSize={INDENT}>
       {`import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 
@@ -616,8 +617,34 @@ const PageB = () => {
   </Slide>
 
   <Slide>
+    <Heading>hook^hook </Heading>
+    <CodePane autoFillHeight={true} indentSize={INDENT}>
+      {`export function useAxiosGet(url, params = undefined) {
+  const [{ loading, error, data }, dispatch] = useReducer(reducer, initialState)
+
+  useEffect(() => {
+    dispatch({ type: 'start', payload: null })
+    const cancelToken = axios.CancelToken.source()
+    axios({ url, params, cancelToken: cancelToken.token, paramsSerializer }).then(response => {
+      dispatch({ type: 'success', payload: response.data })
+    }).catch(error => {
+      if (!axios.isCancel(error)) {
+        dispatch({ type: 'failure', payload: error })
+      }
+    })
+
+    return cancelToken.cancel
+  }, [url, params])
+
+  return { loading, error, data }
+}`}
+    </CodePane>
+  </Slide>
+
+  <Slide>
     <FlexBox alignItems='center' height='100%' flexDirection='column'>
-      <Heading>more hooks more hooks</Heading>
+      <Heading>more</Heading>
+      <Text>https://reactjs.org/docs/hooks-intro</Text>
       <Text>https://github.com/rehooks/awesome-react-hooks</Text>
     </FlexBox>
   </Slide>
